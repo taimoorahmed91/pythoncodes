@@ -1,0 +1,90 @@
+{
+    "detail": {
+        "errorCode": 5000,
+        "message": "An internal has error occurred while processing this request.",
+        "detail": "An internal has error occurred while processing this request."
+    },
+    "connectionInfo": {
+        "hostType": null,
+        "nwDeviceName": "cat_9k_2.abc.inc",
+        "nwDeviceMac": "F8:7B:20:71:4D:80",
+        "protocol": null,
+        "band": null,
+        "spatialStream": null,
+        "channel": null,
+        "channelWidth": null,
+        "wmm": "Unsupported",
+        "uapsd": "Disabled",
+        "timestamp": 1598468601315
+    },
+    "topology": {
+        "nodes": [
+            {
+                "role": "Client",
+                "name": "",
+                "id": "00_1E_13_A5_B9_40",
+                "description": "Client",
+                "deviceType": null,
+                "platformId": null,
+                "family": null,
+                "ip": "10.10.22.114",
+                "softwareVersion": null,
+                "userId": null,
+                "nodeType": "Interface",
+                "radioFrequency": null,
+                "clients": null,
+                "count": null,
+                "healthScore": 10,
+                "level": 0,
+                "fabricGroup": null,
+                "connectedDevice": null
+            },
+            {
+                "role": "ACCESS",
+                "name": "cat_9k_2.abc.inc",
+                "id": "3e48558a-237a-4bca-8823-0580b88c6acf",
+                "description": "SWITCH",
+                "deviceType": "Cisco Catalyst 9300 Switch",
+                "platformId": "C9300-24UX",
+                "family": "Switches and Hubs",
+                "ip": "10.10.22.70",
+                "softwareVersion": "16.6.4a",
+                "userId": null,
+                "nodeType": "NetworkDevice",
+                "radioFrequency": null,
+                "clients": 1,
+                "count": null,
+                "healthScore": 10,
+                "level": 1,
+                "fabricGroup": null,
+                "connectedDevice": null
+            }
+        ],
+        "links": [
+            {
+                "source": "00_1E_13_A5_B9_40",
+                "linkStatus": "UP",
+                "sourceLinkStatus": null,
+                "targetLinkStatus": null,
+                "label": [
+                    "CLIENTDATA"
+                ],
+                "target": "3e48558a-237a-4bca-8823-0580b88c6acf",
+                "id": null,
+                "portUtilization": null,
+                "sourceInterfaceName": null,
+                "targetInterfaceName": null,
+                "sourceDuplexInfo": null,
+                "targetDuplexInfo": null,
+                "sourcePortMode": null,
+                "targetPortMode": null,
+                "sourceAdminStatus": null,
+                "targetAdminStatus": null,
+                "apRadioAdminStatus": null,
+                "apRadioOperStatus": null,
+                "sourcePortVLANInfo": null,
+                "targetPortVLANInfo": null
+            }
+        ]
+    }
+}

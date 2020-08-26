@@ -12,17 +12,18 @@ response = requests.post(url, auth=(user, pw), verify=False).json()
 token = response['Token']
 
 ############ GET CLIENT DETAIL ################
-macAddress = '00:00:2A:01:00:2E'
+macAddress = '00:1E:13:A5:B9:40'
 url = f"https://sandboxdnac.cisco.com/dna/intent/api/v1/client-detail?timestamp=&macAddress={macAddress}"
 
 
 headers = {
-    'x-auth-token': token
+    'x-auth-token': token,
+    'Content-Type': 'application/json'
 }
 
 response = requests.get(url, headers=headers, verify=False).json()
 
-# print(json.dumps(response, indent=2, sort_keys=True))
+#print(json.dumps(response, indent=2, sort_keys=True))
 device_details = response['topology']['nodes']
 for device_detail in device_details:
     if device_detail['id'] == device_details[0]['id']:
@@ -30,6 +31,6 @@ for device_detail in device_details:
         print(f"MAC: {device_detail['id']}")
         print(f"Health Score: {device_detail['healthScore']}")
         print(" ")
-    elif device_detail['id'] == device_details[2]['id']:
+    elif device_detail['id'] == device_details[1]['id']:
         print(f"Connected to {device_detail['deviceType']}")
         print(f"WAP IP: {device_detail['ip']}")
