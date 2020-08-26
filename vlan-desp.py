@@ -8,6 +8,7 @@ url = "https://172.16.30.101/ins"
 switchuser = "cisco"
 switchpassword = "cisco"
 
+
 myheaders = {"content-type": "application/json"}
 payload = {
     "ins_api": {
@@ -15,7 +16,7 @@ payload = {
         "type": "cli_show",
         "chunk": "0",
         "sid": "1",
-        "input": "show cdp neigh",
+        "input": "show interface switchport",
         "output_format": "json",
     }
 }
@@ -27,11 +28,9 @@ response = requests.post(
     verify=False,
 ).json()
 
-# print(response)
-# print(json.dumps(response, indent=2, sort_keys=True))
 
+# from here is the authentication part
 
-##### from here do the login with cookies part #####
 
 auth_url = "https://172.16.30.101/api/mo/aaaLogin.json"
 
@@ -51,42 +50,41 @@ cookies['APIC-cookie'] = token
 
 # print(cookies)
 
+# your logic starts here
 
-# from here we start working on the loop ecause the output is more than 1 row
-# let's bring up the counter to the number of neighbors and then stop
 
+max_interface = 28
 counter = 0
-nei_count = response['ins_api']['outputs']['output']['body']['neigh_count']
-headers = {"content-type": "application/json"}
-# print(nei_count)
 
-while counter < nei_count:
-    hostname = response['ins_api']['outputs']['output']['body'][
-        'TABLE_cdp_neighbor_brief_info']['ROW_cdp_neighbor_brief_info'][counter]['device_id']
-    local_int = response['ins_api']['outputs']['output']['body'][
-        'TABLE_cdp_neighbor_brief_info']['ROW_cdp_neighbor_brief_info'][counter]['intf_id']
-    # print(local_int)
-    remote_int = response['ins_api']['outputs']['output']['body'][
-        'TABLE_cdp_neighbor_brief_info']['ROW_cdp_neighbor_brief_info'][counter]['port_id']
+while counter < max_interface:
+
+    interface = response['ins_api']['outputs']['output']['body']['TABLE_interface']['ROW_interface'][counter]['interface']
+    operation_mode = response['ins_api']['outputs']['output']['body']['TABLE_interface']['ROW_interface'][counter]['oper_mode']
+    access_vlan = response['ins_api']['outputs']['output']['body']['TABLE_interface']['ROW_interface'][counter]['access_vlan']
+    access_vlan_name = response['ins_api']['outputs']['output']['body'][
+        'TABLE_interface']['ROW_interface'][counter]['access_vlan_name']
     counter += 1
 
-    # print(local_int)
+    print(interface)
 
     body = {
         "l1PhysIf": {
             "attributes": {
-                "descr": 'Interface '+local_int+' connected to '+hostname+' interface '+remote_int
+                "descr": 'Interface '+interface+' mode '+operation_mode+' vlan name ' + access_vlan_name
             }
         }
     }
+    if operation_mode != 'trunk':
 
-    if local_int != 'mgmt0':
         # FORMAT THE INTERFACE NAME TO BE LIKE ETH1/1 TO CONSTRUCT URL
-        int_name = str.lower(str(local_int[:3]))
-        int_num = re.search(r'[1-9]/[1-9]*', local_int)
+
+        int_name = str.lower(str(interface[:3]))
+        int_num = re.search(r'[1-9]/[0-9]*', interface)
+
         # print(int_name+str(int_num.group(0)))
         int_url = 'https://172.16.30.101/api/mo/sys/intf/phys-['+int_name+str(
             int_num.group(0))+'].json'
+
         post_response = requests.put(int_url, data=json.dumps(
-            body), headers=headers, cookies=cookies, verify=False).json()
+            body), headers=myheaders, cookies=cookies, verify=False).json()
         print(post_response)
