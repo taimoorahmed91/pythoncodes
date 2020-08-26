@@ -41,3 +41,20 @@ response_clients = requests.get(
 
 print(
     f"Clients: {response_clients['response'][0]['scoreDetail'][0]['clientCount']}")
+
+scores = response_clients['response'][0]['scoreDetail']
+
+
+for score in scores:
+    if score['scoreCategory']['value'] == 'WIRED':
+        print(f"Wired Clients: {score['clientCount']}")
+        score_values = score['scoreList']
+        for score_value in score_values:
+            print(
+                f"  {score_value['scoreCategory']['value']}: {score_value['clientCount']}")
+    elif score['scoreCategory']['value'] == 'WIRELESS':
+        print(f"Wireless Clients: {score['clientCount']}")
+        score_values = score['scoreList']
+        for score_value in score_values:
+            print(
+                f"  {score_value['scoreCategory']['value']}: {score_value['clientCount']}")
