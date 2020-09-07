@@ -8,7 +8,7 @@ url = "https://fmcrestapisandbox.cisco.com"
 login_url = '/api/fmc_platform/v1/auth/generatetoken'
 headers = {'Content-Type': 'application/json'}
 user = 'taimoorahm'
-pw = 'h2Mcqwpc'
+pw = 'tZrcMj8d'
 
 
 login_response = requests.post(
@@ -22,7 +22,7 @@ print(token)
 
 headers['X-auth-access-token'] = token
 
-rules_url = '/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/005056BB-0B24-0ed3-0000-893353377696/accessrules'
+rules_url = '/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies/005056BB-0B24-0ed3-0000-893353379008/accessrules'
 
 rules_payload = {
     "sendEventsToFMC": True,
