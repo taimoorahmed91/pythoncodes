@@ -1,0 +1,13 @@
+---
+- name: Demo Ansible loops
+  hosts: googlemachines
+  become: yes
+  tasks:
+    - name: Create a file
+      shell: echo 'Begin file' > /home/taimoor/loops.txt
+    - name: install packages
+      yum: name={{item}} state=latest
+      with_items:
+        - httpd
+        - mysql
+        - python

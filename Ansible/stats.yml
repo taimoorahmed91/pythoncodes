@@ -1,0 +1,8 @@
+---
+    - name: Get stats and write to desktop
+      hosts: googlemachines
+      tasks:
+        - name: get system status and info
+          shell: uname -a > /home/taimoor/output.txt
+        - name: print my username
+          shell: whoami >> /home/taimoor/output.txt
