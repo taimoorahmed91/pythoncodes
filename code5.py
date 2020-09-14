@@ -35,6 +35,6 @@ op_state = interface_python["interfaces-state"]["interface"]
 print("Start")
 print(f"Name: {config['name']['#text']}")
 print(f"Description: {config['description']}")
-print(f"IPv4: {config['ipv4']['address']['ip']}")
-print(f"Sunet: {config['ipv4']['address']['netmask']}")
+#print(f"IPv4: {config['ipv4']['address']['ip']}")
+#print(f"Sunet: {config['ipv4']['address']['netmask']}")
 print(f"Pakcets In {op_state['statistics']['in-unicast-pkts']}")
