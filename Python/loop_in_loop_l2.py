@@ -18,7 +18,7 @@ for IP in f:
     tn.write(password.encode('ascii') + b"\n")
     tn.write(b"conf t\n")
 
-    for n in range(2, 25):
+    for n in range(22, 25):
         tn.write(b"vlan " + str(n).encode('ascii') + b"\n")
         tn.write(b"name Python_VLAN_" + str(n).encode('ascii') + b"\n")
 

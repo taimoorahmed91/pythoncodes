@@ -3,6 +3,10 @@ hostname switch5
 
 username cisco priv 15 password cisco123
 
+ip domain-name taimoor.com
+crypto key generate rsa
+1024
+ip ssh version 2
 vlan 10
 
 interface gig 0/0
@@ -18,6 +22,6 @@ ip default-gateway 10.10.20.254
 
 line vty 0 4
 login local
-transport input telnet
+transport input all
 exit
 
