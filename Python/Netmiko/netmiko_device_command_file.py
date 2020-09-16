@@ -12,8 +12,8 @@ for devices in devices_list:
     ios_device = {
         'device_type': 'cisco_ios',
         'ip': ip_address_of_device,
-        'username': 'david',
-        'password': 'cisco'
+        'username': 'cisco',
+        'password': 'cisco123'
     }
 
     net_connect = ConnectHandler(**ios_device)
