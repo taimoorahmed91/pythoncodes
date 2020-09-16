@@ -1,8 +1,8 @@
 import json
 from napalm import get_network_driver
 
-devicelist = ['10.20.20.119',
-              '10.20.20.120'
+devicelist = ['10.10.20.119',
+              '10.10.20.120'
               ]
 
 for ip_address in devicelist:
