@@ -10,15 +10,11 @@ ip ssh version 2
 vlan 10
 
 interface gig 0/0
-switchport mode access
-switchport access vlan 10
-
-interface vlan 10 
-ip address 10.10.20.115 255.255.255.0
+ip address 10.10.20.121 255.255.255.0
 no shut
 exit
 
-ip default-gateway 10.10.20.254 
+
 
 line vty 0 4
 login local
